@@ -1,0 +1,52 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="https://www.svgrepo.com/show/66625/popcorn.svg" />
+</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+          <li class="nav-item active link-underline-opacity-0">
+            <%= link_to "My Lists", lists_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to "New List", new_list_path, class:"nav-link" %>
+          </li>
+          <!--li class="nav-item"-->
+          <!--/li-->
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="banner mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(https://images.unsplash.com/photo-1631805249874-3f546d176de4?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+  <h1><%=@list.name%></h1>
+  </div>
+  <%= link_to "New Bookmark", new_list_bookmark_path(@list), class:"btn btn-success" %>
+<div class="container mt-3">
+  <div class="row">
+    <div class="d-flex justify-content-center">
+        <div class="d-inline-flex p-2">
+          <div class="movie-card mb-3 mt-3">
+          <% @list.bookmarks.each do |bookmark| %>
+          <img class="movie-card-image" src="<%= bookmark.movie.poster_url %>" alt="affiche">
+          <div class="movie-card-content">
+          <div class="movie-card-title">
+          <h2 class="card-trip-pricing"><%= bookmark.movie.title %> - </h2>
+          <h2 class="card-trip-pricing"><%= bookmark.movie.rating %> </h2>
+          </div>
+          <%= bookmark.movie.overview %><br>
+          <%= bookmark.comment %><br>
+            <%= link_to "Delete",
+        bookmark_path(bookmark),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+    %>
+          </div>
+        <% end %>
+      </ul>
+      </div>
+      </div>
+  </div>
+  </div>
+</div>
